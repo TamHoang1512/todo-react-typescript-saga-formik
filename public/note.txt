@@ -1,0 +1,12 @@
+// proplems
+cannot get data from api
+seem like store not working
+
+
+
+
+// need todo
+send request 
+get response
+show list
+filter
