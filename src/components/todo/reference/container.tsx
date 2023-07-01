@@ -7,7 +7,11 @@ import { nanoid } from "nanoid";
 import { initTodoValue } from "../common/types";
 import { ButtonProps } from "../../../common/utils/button";
 import actions from "../../../store/todo/actions";
-import { TodoRequest, TodoResponse, TodoState } from "../../../store/todo/models";
+import {
+  TodoRequest,
+  TodoResponse,
+  TodoState,
+} from "../../../store/todo/models";
 import selectors from "../../../store/todo/selectors";
 import RequestForm from "./request-form";
 import { createValidationSchema } from "./validations";
@@ -18,13 +22,12 @@ import { StateAll } from "../../../common/store/todo/types";
 const Container = () => {
   const dispatch = useDispatch();
 
-// Inside your component
-const todoApiResponse = useSelector<StateAll, TodoResponse>(
-  (state: StateAll) => selectors.todoApiResponse()(state).response
-);
+  const todoApiResponse = useSelector<StateAll, TodoResponse>(
+    (state: StateAll) => selectors.todoApiResponse()(state).response
+  );
 
   // Log the response
-  console.log(todoApiResponse);
+  // console.log(todoApiResponse);
 
   const callApiTodo = useCallback(
     (request: TodoRequest) => dispatch(actions.callApiTodo.request(request)),
@@ -44,7 +47,7 @@ const todoApiResponse = useSelector<StateAll, TodoResponse>(
   const formikBag = useFormik({
     initialValues: initTodoValue,
     validationSchema: createValidationSchema,
-    onSubmit: handleSubmitForm
+    onSubmit: handleSubmitForm,
   });
 
   const handleOnClick = useCallback(() => {
@@ -57,7 +60,7 @@ const todoApiResponse = useSelector<StateAll, TodoResponse>(
       text: "ADD",
       theme: "blue",
       shortcutKey: "F1",
-      onClick: handleOnClick
+      onClick: handleOnClick,
     } as ButtonProps;
   }, [handleOnClick]);
 
