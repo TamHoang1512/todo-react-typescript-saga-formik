@@ -16,7 +16,7 @@ export const callApiTodoService = (requestPayload: Request) => async (
     const response = await fetch(API_URL);
     const data = await response.json();
     dispatch(callApiTodo.success(data));
-  } catch (error) {
+  } catch (error: any) {
     dispatch(callApiTodo.failure(error.message));
   }
 };

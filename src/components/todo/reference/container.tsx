@@ -7,18 +7,21 @@ import { nanoid } from "nanoid";
 import { initTodoValue } from "../common/types";
 import { ButtonProps } from "../../../common/utils/button";
 import actions from "../../../store/todo/actions";
-import { TodoRequest, TodoResponse } from "../../../store/todo/models";
+import { TodoRequest, TodoResponse, TodoState } from "../../../store/todo/models";
 import selectors from "../../../store/todo/selectors";
 import RequestForm from "./request-form";
 import { createValidationSchema } from "./validations";
-import { useMemorizedSelector } from "./use-memorized-selector";
+import { useSelector } from "react-redux";
+import { StateAll } from "../../../common/store/todo/types";
+// import { useMemorizedSelector } from "./use-memorized-selector";
 
 const Container = () => {
   const dispatch = useDispatch();
 
-  const todoApiResponse: TodoResponse = useMemorizedSelector(
-    selectors.todoApiResponse
-  ).response;
+// Inside your component
+const todoApiResponse = useSelector<StateAll, TodoResponse>(
+  (state: StateAll) => selectors.todoApiResponse()(state).response
+);
 
   // Log the response
   console.log(todoApiResponse);
